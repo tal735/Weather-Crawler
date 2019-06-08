@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
 public class TimeAndDateWeatherCrawlerServiceImpl implements WeatherCrawlerService {
 
 
-    private static final Logger log = LoggerFactory.getLogger(WeatherCrawlerServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(TimeAndDateWeatherCrawlerServiceImpl.class);
 
     private final static Pattern LOCATION_URL_REGEX = Pattern.compile("/weather/(.+)/(.+)$");
     private final static String A_HREF_LOCATION_SELECTOR = "a[href^=/weather/]";
