@@ -16,36 +16,20 @@
 
 package com.crawler.app.main;
 
-import com.crawler.app.schedule.ScheduledTasks;
 import org.apache.commons.lang3.StringUtils;
-import org.awaitility.Duration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static org.awaitility.Awaitility.await;
-import static org.mockito.Mockito.atLeast;
-import static org.mockito.Mockito.verify;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ScheduledTasksTest {
-
-    @SpyBean
-    ScheduledTasks tasks;
-
-    @Test
-    public void reportCurrentTime() {
-        await().atMost(Duration.TEN_SECONDS).untilAsserted(() -> {
-            verify(tasks, atLeast(2)).getWeatherStats();
-        });
-    }
 
     @Test
     public void getCountryFromHref() {
