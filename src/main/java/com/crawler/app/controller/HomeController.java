@@ -23,7 +23,8 @@ public class HomeController {
     }
 
     @GetMapping("/weather")
-    public @ResponseBody WeatherDto getWeatherStats(@RequestParam String country, @RequestParam String city) {
+    @ResponseBody
+    public WeatherDto getWeatherStats(@RequestParam String country, @RequestParam String city) {
         return weatherCrawlerService.getWeatherStats(country, city);
     }
 }
