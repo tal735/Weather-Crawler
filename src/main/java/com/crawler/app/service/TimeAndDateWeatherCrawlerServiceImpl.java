@@ -61,8 +61,8 @@ public class TimeAndDateWeatherCrawlerServiceImpl implements WeatherCrawlerServi
             Document document = Jsoup.connect(String.format(TimeAndDateConstants.WEATHER_COUNTRY_CITY_URL, country, city)).get();
             return getWeatherStats(document);
         } catch (Exception e) {
-            log.error("Exception while fetching weather for " + city);
-            return new WeatherDto(); //?
+            log.error("Exception while fetching weather for " + city, e);
+            return null;
         }
     }
 
