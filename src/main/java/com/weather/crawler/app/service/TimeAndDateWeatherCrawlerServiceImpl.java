@@ -42,7 +42,7 @@ public class TimeAndDateWeatherCrawlerServiceImpl implements WeatherCrawlerServi
     public void refreshLocations() {
         Collection<Country> countries = getLatestCountries();
         for (Country country : countries) {
-            Collection<Location> cities = getCities(country);
+            Collection<Location> cities = getCities(country.getUrlName());
             country.addCities(cities);
         }
         solrService.addLocations(countries);
@@ -81,10 +81,10 @@ public class TimeAndDateWeatherCrawlerServiceImpl implements WeatherCrawlerServi
         return countries;
     }
 
-    private Collection<Location> getCities(Country country) {
+    private Collection<Location> getCities(String country) {
         Set<Location> cities = Sets.newHashSet();
         try {
-            Document document = Jsoup.connect(String.format(WEATHER_URL + "/%s", country.getUrlName())).get();
+            Document document = Jsoup.connect(String.format(WEATHER_URL + "/%s", country)).get();
             Elements tableRows = document.select(TABLE_TR_SELECTOR);
             for (Element tableRow : tableRows) {
                 Elements rowCities = tableRow.select(A_HREF_LOCATION_SELECTOR);
@@ -94,8 +94,8 @@ public class TimeAndDateWeatherCrawlerServiceImpl implements WeatherCrawlerServi
                     if (regexMatcher.find()) {
                         String displayName = colCity.text();
                         String urlName = regexMatcher.group(2);
-                        Location cityLocation = Location.initialize(displayName, urlName);
-                        cities.add(cityLocation);
+                        Location city = Location.initialize(displayName, urlName);
+                        cities.add(city);
                     }
                 }
             }
