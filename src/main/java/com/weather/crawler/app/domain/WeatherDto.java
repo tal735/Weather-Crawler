@@ -1,4 +1,4 @@
-package com.crawler.app.domain;
+package com.weather.crawler.app.domain;
 
 public class WeatherDto {
     private String location;

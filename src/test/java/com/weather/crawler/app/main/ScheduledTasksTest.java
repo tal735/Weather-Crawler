@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.crawler.app.main;
+package com.weather.crawler.app.main;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;

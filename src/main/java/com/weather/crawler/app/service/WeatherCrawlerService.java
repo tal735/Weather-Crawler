@@ -1,7 +1,7 @@
-package com.crawler.app.service;
+package com.weather.crawler.app.service;
 
-import com.crawler.app.domain.Country;
-import com.crawler.app.domain.WeatherDto;
+import com.weather.crawler.app.domain.Country;
+import com.weather.crawler.app.domain.WeatherDto;
 
 import java.util.Collection;
 

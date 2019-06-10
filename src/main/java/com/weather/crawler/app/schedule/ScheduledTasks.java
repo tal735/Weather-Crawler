@@ -1,13 +1,13 @@
-package com.crawler.app.schedule;
+package com.weather.crawler.app.schedule;
 
-import com.crawler.app.domain.Country;
-import com.crawler.app.domain.Location;
-import com.crawler.app.domain.WeatherDto;
+import com.weather.crawler.app.domain.Country;
+import com.weather.crawler.app.domain.Location;
+import com.weather.crawler.app.domain.WeatherDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import com.crawler.app.service.WeatherCrawlerService;
+import com.weather.crawler.app.service.WeatherCrawlerService;
 
 import java.util.Collection;
 

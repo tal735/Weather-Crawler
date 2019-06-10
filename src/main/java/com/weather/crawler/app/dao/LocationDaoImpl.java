@@ -1,6 +1,6 @@
-package com.crawler.app.dao;
+package com.weather.crawler.app.dao;
 
-import com.crawler.app.domain.Country;
+import com.weather.crawler.app.domain.Country;
 import com.google.common.collect.Sets;
 import org.springframework.stereotype.Component;
 

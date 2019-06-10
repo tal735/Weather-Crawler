@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.crawler.app.main;
+package com.weather.crawler.app.main;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.crawler.app.schedule.ScheduledTasks;
+import com.weather.crawler.app.schedule.ScheduledTasks;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
-package com.crawler.app.controller;
+package com.weather.crawler.app.controller;
 
-import com.crawler.app.domain.WeatherDto;
-import com.crawler.app.service.WeatherCrawlerService;
+import com.weather.crawler.app.domain.WeatherDto;
+import com.weather.crawler.app.service.WeatherCrawlerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;

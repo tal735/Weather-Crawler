@@ -1,10 +1,10 @@
-package com.crawler.app.service;
+package com.weather.crawler.app.service;
 
-import com.crawler.app.dao.LocationDao;
-import com.crawler.app.domain.Country;
-import com.crawler.app.domain.Location;
-import com.crawler.app.domain.WeatherDto;
-import com.crawler.app.service.constants.TimeAndDateConstants;
+import com.weather.crawler.app.dao.LocationDao;
+import com.weather.crawler.app.domain.Country;
+import com.weather.crawler.app.domain.Location;
+import com.weather.crawler.app.domain.WeatherDto;
+import com.weather.crawler.app.service.constants.TimeAndDateConstants;
 import com.google.common.collect.Sets;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;

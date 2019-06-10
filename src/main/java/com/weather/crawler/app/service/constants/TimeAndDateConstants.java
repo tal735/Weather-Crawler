@@ -1,4 +1,4 @@
-package com.crawler.app.service.constants;
+package com.weather.crawler.app.service.constants;
 
 public class TimeAndDateConstants {
     public final static String WEATHER_URL = "https://www.timeanddate.com/weather";
