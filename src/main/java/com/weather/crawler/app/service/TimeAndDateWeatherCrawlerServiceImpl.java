@@ -3,7 +3,6 @@ package com.weather.crawler.app.service;
 import com.weather.crawler.app.domain.Country;
 import com.weather.crawler.app.domain.Location;
 import com.weather.crawler.app.domain.WeatherDto;
-import com.weather.crawler.app.service.constants.TimeAndDateConstants;
 import com.google.common.collect.Sets;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
@@ -26,6 +25,7 @@ public class TimeAndDateWeatherCrawlerServiceImpl implements WeatherCrawlerServi
 
     private static final Logger log = LoggerFactory.getLogger(TimeAndDateWeatherCrawlerServiceImpl.class);
 
+    private final static String WEATHER_URL = "https://www.timeanddate.com/weather";
     private final static Pattern LOCATION_URL_REGEX = Pattern.compile("/weather/(.+)/(.+)$");
     private final static String A_HREF_LOCATION_SELECTOR = "a[href^=/weather/]";
     private final static String TABLE_TR_SELECTOR = "table tr";
@@ -51,7 +51,7 @@ public class TimeAndDateWeatherCrawlerServiceImpl implements WeatherCrawlerServi
     @Override
     public WeatherDto getWeatherStats(String country, String city) {
         try {
-            Document document = Jsoup.connect(String.format(TimeAndDateConstants.WEATHER_COUNTRY_CITY_URL, country, city)).get();
+            Document document = Jsoup.connect(String.format(WEATHER_URL + "/%s/%s", country, city)).get();
             return getWeatherStats(document);
         } catch (Exception e) {
             log.error("Exception while fetching weather for " + city, e);
@@ -62,7 +62,7 @@ public class TimeAndDateWeatherCrawlerServiceImpl implements WeatherCrawlerServi
     private Collection<Country> getLatestCountries() {
         Set<Country> countries = Sets.newHashSet();
         try {
-            Document document = Jsoup.connect(TimeAndDateConstants.WEATHER_URL).data("low", "c", "sort", "1").get(); //list of capitals
+            Document document = Jsoup.connect(WEATHER_URL).data("low", "c", "sort", "1").get(); //list of capitals
             Elements capitals = document.select(TABLE_TR_SELECTOR);
             for (Element capital : capitals) {
                 Elements capitalElem = capital.select(A_HREF_LOCATION_SELECTOR);
@@ -84,7 +84,7 @@ public class TimeAndDateWeatherCrawlerServiceImpl implements WeatherCrawlerServi
     private Collection<Location> getCities(Country country) {
         Set<Location> cities = Sets.newHashSet();
         try {
-            Document document = Jsoup.connect(String.format(TimeAndDateConstants.WEATHER_COUNTRY_URL, country.getUrlName())).get();
+            Document document = Jsoup.connect(String.format(WEATHER_URL + "/%s", country.getUrlName())).get();
             Elements tableRows = document.select(TABLE_TR_SELECTOR);
             for (Element tableRow : tableRows) {
                 Elements rowCities = tableRow.select(A_HREF_LOCATION_SELECTOR);
