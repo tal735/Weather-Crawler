@@ -27,6 +27,7 @@ public class SolrServiceImpl implements SolrService {
     private static final String SOLR_SOLR_URL = "http://localhost:8983/solr/Solr_sample";
     private static final SolrClient solr = new HttpSolrClient.Builder(SOLR_SOLR_URL).build();
 
+    @Override
     public Collection<LocationResultDto> getLocations(String location) {
         try {
             SolrQuery query = new SolrQuery();
@@ -44,6 +45,7 @@ public class SolrServiceImpl implements SolrService {
         }
     }
 
+    @Override
     public synchronized void addLocations(Collection<Country> countries) {
         List<SolrInputDocument> docs = Lists.newArrayList();
         try {
