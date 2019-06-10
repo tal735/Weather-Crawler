@@ -19,7 +19,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Service("timeAndDateWeatherCrawlerServiceImpl")
+@Service
 public class TimeAndDateWeatherCrawlerServiceImpl implements WeatherCrawlerService {
 
 
