@@ -12,7 +12,7 @@ public class ScheduledTasks {
     private final WeatherCrawlerService weatherCrawlerService;
 
     @Autowired
-    public ScheduledTasks(@Qualifier("timeAndDateWeatherCrawlerServiceImpl") WeatherCrawlerService weatherCrawlerService) {
+    public ScheduledTasks(WeatherCrawlerService weatherCrawlerService) {
         this.weatherCrawlerService = weatherCrawlerService;
     }
 
