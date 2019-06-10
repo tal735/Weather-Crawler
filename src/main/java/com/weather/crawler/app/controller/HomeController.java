@@ -33,7 +33,7 @@ public class HomeController {
         return weatherCrawlerService.getWeatherStats(country, city);
     }
 
-    @GetMapping()
+    @GetMapping("/find")
     @ResponseBody
     public Collection<LocationResultDto> findLocation(@RequestParam(value = "query") String location) {
         return solrService.getLocations(location);
