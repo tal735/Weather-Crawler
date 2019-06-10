@@ -11,7 +11,7 @@ public class Country {
     private Set<Location> cities = Sets.newHashSet();
 
     public static Country initialize(String displayName, String urlName) {
-        Location location = Location.build(displayName, urlName);
+        Location location = Location.initialize(displayName, urlName);
         return new Country(location);
     }
 

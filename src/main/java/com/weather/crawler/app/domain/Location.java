@@ -8,7 +8,7 @@ public class Location {
     private final String displayName;
     private final String urlName;
 
-    public static Location build(String displayName, String urlName) {
+    public static Location initialize(String displayName, String urlName) {
         return new Location(displayName,  urlName);
     }
 

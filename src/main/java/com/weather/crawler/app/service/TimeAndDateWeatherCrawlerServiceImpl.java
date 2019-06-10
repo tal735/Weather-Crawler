@@ -1,6 +1,5 @@
 package com.weather.crawler.app.service;
 
-import com.weather.crawler.app.dao.LocationDao;
 import com.weather.crawler.app.domain.Country;
 import com.weather.crawler.app.domain.Location;
 import com.weather.crawler.app.domain.WeatherDto;
@@ -32,11 +31,11 @@ public class TimeAndDateWeatherCrawlerServiceImpl implements WeatherCrawlerServi
     private final static String TABLE_TR_SELECTOR = "table tr";
     private final static String HREF = "href";
 
-    private final LocationDao locationDao;
+    private final SolrService solrService;
 
     @Autowired
-    public TimeAndDateWeatherCrawlerServiceImpl(LocationDao locationDao) {
-        this.locationDao = locationDao;
+    public TimeAndDateWeatherCrawlerServiceImpl(SolrService solrService) {
+        this.solrService = solrService;
     }
 
     @Override
@@ -46,13 +45,7 @@ public class TimeAndDateWeatherCrawlerServiceImpl implements WeatherCrawlerServi
             Collection<Location> cities = getCities(country);
             country.addCities(cities);
         }
-
-        locationDao.addCountries(countries);
-    }
-
-    @Override
-    public Collection<Country> getAllCountries() {
-        return locationDao.getAllCountries();
+        solrService.addLocations(countries);
     }
 
     @Override
@@ -101,7 +94,7 @@ public class TimeAndDateWeatherCrawlerServiceImpl implements WeatherCrawlerServi
                     if (regexMatcher.find()) {
                         String displayName = colCity.text();
                         String urlName = regexMatcher.group(2);
-                        Location cityLocation = Location.build(displayName, urlName);
+                        Location cityLocation = Location.initialize(displayName, urlName);
                         cities.add(cityLocation);
                     }
                 }
