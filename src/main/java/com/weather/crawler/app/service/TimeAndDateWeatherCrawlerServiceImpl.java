@@ -42,6 +42,7 @@ public class TimeAndDateWeatherCrawlerServiceImpl implements WeatherCrawlerServi
     public void refreshLocations() {
         Collection<Country> countries = getLatestCountries();
         for (Country country : countries) {
+            log.info("Getting cities of country " + country);
             Collection<Location> cities = getCities(country.getUrlName());
             country.addCities(cities);
         }

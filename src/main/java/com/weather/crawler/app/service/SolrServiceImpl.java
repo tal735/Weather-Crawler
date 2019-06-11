@@ -40,7 +40,7 @@ public class SolrServiceImpl implements SolrService {
             solr.commit();
             return convertToDtos(docs);
         } catch (SolrServerException | IOException e) {
-            log.error("Error while adding SOLR document", e);
+            log.error("Error while performing SOLR search", e);
             return null;
         }
     }
@@ -49,6 +49,9 @@ public class SolrServiceImpl implements SolrService {
     public synchronized void addLocations(Collection<Country> countries) {
         List<SolrInputDocument> docs = Lists.newArrayList();
         try {
+            solr.deleteByQuery("*:*");
+            solr.commit();
+            log.info("Deleted all documents in Solr_sample");
             for (Country country : countries) {
                 for (Location city : country.getCities()) {
                     SolrInputDocument doc = new SolrInputDocument();
@@ -61,6 +64,7 @@ public class SolrServiceImpl implements SolrService {
             }
             solr.add(docs);
             solr.commit();
+            log.info("Finished indexing all countries");
         } catch (SolrServerException | IOException e) {
             log.error("Error while adding SOLR document", e);
         }
