@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="javascript/weather.js"></script>
-</head>
-<body>
-<h1>Weather</h1>
-<table id="myTable">
-    <tr>
-        <th>Location</th>
-        <th>Temperature</th>
-        <th>Humidity</th>
-        <th>Wind</th>
-        <th></th>
-    </tr>
-</table>
-<button type="button" onclick="getWeather('israel', 'tel-aviv')">Request data for Tel-Aviv</button>
-</body>
+    <head>
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="javascript/weather.js"></script>
+    </head>
+    <body>
+        <form name="searchForm" class="example" action="#" onsubmit="return searchForLocations(this);" style="margin:auto;max-width:400px">
+            <input type="text" placeholder="Search country or city.." name="query">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+        <div>
+            <ul id="location_list">
+            </ul>
+        </div>
+        <table id="myTable">
+            <tr>
+                <th>Location</th>
+                <th>Temperature</th>
+                <th>Humidity</th>
+                <th>Wind</th>
+                <th><!-- icon --></th>
+            </tr>
+        </table>
+    </body>
 </html>

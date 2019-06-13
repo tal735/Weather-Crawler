@@ -38,3 +38,36 @@ function formatParams( params ) {
         })
         .join("&")
 }
+
+function searchForLocations(theForm) {
+    var query = theForm.query.value;
+
+    var endpoint = "/locations"
+    var params = {
+    query: query
+    }
+    var url = endpoint + formatParams(params);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var ul = document.getElementById("location_list");
+            ul.innerHTML = ""; // clear previous search results
+            var json = JSON.parse(xhr.responseText);
+            json.forEach(function(obj) {
+                var node = document.createElement("LI");
+                var button = document.createElement('button');
+                button.innerHTML = obj.city + ', ' + obj.country;
+                button.onclick =  function(){
+                 getWeather(obj.countryUrl, obj.cityUrl);
+                };
+                node.appendChild(button);
+                ul.appendChild(node);
+             });
+        }
+    };
+    xhr.send();
+
+    return false;
+}

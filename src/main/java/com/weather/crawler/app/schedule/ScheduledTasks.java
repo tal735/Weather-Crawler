@@ -15,7 +15,7 @@ public class ScheduledTasks {
         this.weatherCrawlerService = weatherCrawlerService;
     }
 
-    @Scheduled(fixedRate = 1000 * 60 * 60, initialDelay = 1000 * 5) //every 1 hour
+    @Scheduled(fixedRate = 1000 * 60 * 60, initialDelay = 1000 * 60 * 60) //every 1 hour
     public synchronized void getWeatherStats() {
         System.out.println("Starting Task getWeatherStats");
         weatherCrawlerService.refreshLocations();

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @Controller
+@CrossOrigin(origins = "http://localhost:4200") //for development purposes
 public class HomeController {
 
     private final WeatherCrawlerService weatherCrawlerService;
@@ -33,7 +34,7 @@ public class HomeController {
         return weatherCrawlerService.getWeatherStats(country, city);
     }
 
-    @GetMapping("/locations")
+    @PostMapping("/locations")
     @ResponseBody
     public Collection<LocationResultDto> findLocation(@RequestParam(value = "query") String location) {
         return solrService.getLocations(location);
