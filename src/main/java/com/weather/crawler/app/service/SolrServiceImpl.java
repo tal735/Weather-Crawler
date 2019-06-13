@@ -14,6 +14,7 @@ import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.SolrInputDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -24,8 +25,11 @@ import java.util.List;
 public class SolrServiceImpl implements SolrService {
     private static final Logger log = LoggerFactory.getLogger(SolrServiceImpl.class);
 
-    private static final String SOLR_SOLR_URL = "http://localhost:8983/solr/Solr_sample";
-    private static final SolrClient solr = new HttpSolrClient.Builder(SOLR_SOLR_URL).build();
+    private final SolrClient solr;
+
+    public SolrServiceImpl( @Value("${base.solr.url}") String baseSolrUrl) {
+        this.solr = new HttpSolrClient.Builder(baseSolrUrl).build();
+    }
 
     @Override
     public Collection<LocationResultDto> getLocations(String location) {

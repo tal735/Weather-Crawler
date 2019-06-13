@@ -4,7 +4,6 @@ import com.google.common.base.Objects;
 
 public class Location {
 
-    private Location parent;
     private final String displayName;
     private final String urlName;
 
@@ -15,14 +14,6 @@ public class Location {
     private Location(String displayName, String urlName) {
         this.displayName = displayName;
         this.urlName = urlName;
-    }
-
-    public Location getParent() {
-        return parent;
-    }
-
-    public void setParent(Location parent) {
-        this.parent = parent;
     }
 
     public String getDisplayName() {

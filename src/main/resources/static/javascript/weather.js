@@ -6,16 +6,18 @@ function getWeather(countryName, cityName) {
 
     var table = document.getElementById("myTable");
     var row = table.insertRow(1);
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    var cell3 = row.insertCell(2);
-    var cell4 = row.insertCell(3);
-    var cell5 = row.insertCell(4);
-    cell1.innerHTML = myObj.location;
-    cell2.innerHTML = myObj.temperature;
-    cell3.innerHTML = myObj.humidity;
-    cell4.innerHTML = myObj.wind;
-    cell5.innerHTML = "<img src=\"" + myObj.icon +"\" />";
+    var loc = row.insertCell(0);
+    var temp = row.insertCell(1);
+    var hum = row.insertCell(2);
+    var wind = row.insertCell(3);
+    var icon = row.insertCell(4);
+    var remove = row.insertCell(5);
+    loc.innerHTML = myObj.location;
+    temp.innerHTML = myObj.temperature;
+    hum.innerHTML = myObj.humidity;
+    wind.innerHTML = myObj.wind;
+    icon.innerHTML = "<img src=\"" + myObj.icon +"\" />";
+    remove.innerHTML = "<input type=\"button\" value=\"Remove\" onclick=\"deleteRow(this)\">";
   }
 };
 
@@ -70,4 +72,9 @@ function searchForLocations(theForm) {
     xhr.send();
 
     return false;
+}
+
+function deleteRow(r) {
+  var i = r.parentNode.parentNode.rowIndex;
+  document.getElementById("myTable").deleteRow(i);
 }

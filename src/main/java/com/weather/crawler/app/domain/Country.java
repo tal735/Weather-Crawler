@@ -29,7 +29,6 @@ public class Country {
 
     public void addCities(Collection<Location> cities) {
         for (Location city : cities) {
-            city.setParent(location);
             getCities().add(city);
         }
     }
